@@ -36,8 +36,8 @@ function concertThis(value) {
         .then(function (response) {
             for (let i = 0; i < 3; i++) {
 
-                let datetime = response.data[i].datetime; //Saves datetime response into a variable
-                let dateArr = datetime.split('T'); //Attempting to split the date and time in the response
+                // let datetime = response.data[i].datetime; //Saves datetime response into a variable
+                // let dateArr = datetime.split('T'); //Attempting to split the date and time in the response
                 //console.log(dateArr)
                 let concertResults =
                     "----------------------------Concert Info----------------------------------------" +
@@ -67,6 +67,7 @@ function spotifySong(value) {
         .then(function (response) {
             // beatles song for yesterday example
             // response[0] to pull in first song only
+            console.log(response)
             for (let i = 0; i < 3; i++) {
                 spotifyResults =
                     "--------------------------------Spotify Info------------------------------------" +
@@ -75,7 +76,7 @@ function spotifySong(value) {
                     "\nAlbum Name: " + response.tracks.items[i].album.name +
                     "\nPreview Link: " + response.tracks.items[i].preview_url;
 
-                console.log(spotifyResults);
+                // console.log(spotifyResults);
             }
         })
         .catch(function (err) {
