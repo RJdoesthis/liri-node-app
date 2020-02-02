@@ -32,20 +32,17 @@ function getUserInput(command, value) {
 getUserInput(command, value);
 
 function concertThis(value) {
-    axios.get("https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp")
-        .then(function (response) {
-            for (let i = 0; i < 3; i++) {
+    let url = "https://rest.bandsintown.com/artists/" + value + "/event?app_id=codingbootcamp";
+    console.log(url);
+    axios.get(url).then(
+        function (response) {
+            console.log(response[1]);
 
-                // let datetime = response.data[i].datetime; //Saves datetime response into a variable
-                // let dateArr = datetime.split('T'); //Attempting to split the date and time in the response
-                //console.log(dateArr)
-                let concertResults =
-                    "----------------------------Concert Info----------------------------------------" +
-                    "\nVenue Name: " + response.data[i].venue.name +
-                    "\nVenue Location: " + response.data[i].venue.city +
-                    "\nDate of the Event: " + moment(dateArr[0], "YYYY-MM-DD").format("MM-DD-YYYY"); //dateArr[0] should be the date separated from the time
-                console.log(concertResults);
-            }
+            "----------------------------Concert Info----------------------------------------"
+            console.log("Venue Name: " + response.data[0].venue.name);
+            console.log("Venue Location: " + response.data[0].venue.city);
+            //  console.log(Date of the Event: " + moment(dateArr[0], "YYYY-MM-DD").format("MM-DD-YYYY");
+
         })
         .catch(function (error) {
             console.log(error);
@@ -65,8 +62,6 @@ function spotifySong(value) {
             query: value
         })
         .then(function (response) {
-            // beatles song for yesterday example
-            // response[0] to pull in first song only
             console.log(response)
             for (let i = 0; i < 3; i++) {
                 spotifyResults =
@@ -76,7 +71,7 @@ function spotifySong(value) {
                     "\nAlbum Name: " + response.tracks.items[i].album.name +
                     "\nPreview Link: " + response.tracks.items[i].preview_url;
 
-                // console.log(spotifyResults);
+                console.log(spotifyResults);
             }
         })
         .catch(function (err) {
